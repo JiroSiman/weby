@@ -446,3 +446,59 @@ body {
         padding: 25px 20px;
     }
 }
+
+ .about-section {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+/* 🌐 NAVBAR RESPONSIVE FIX */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allow wrapping if space is tight */
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap; /* prevent items from going off-screen */
+  gap: 12px;
+  justify-content: center;
+}
+
+.nav-links a {
+  color: var(--dark-gray);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: clamp(14px, 2vw, 16px); /* responsive font size */
+}
+
+.nav-links a:hover {
+  color: var(--primary-red);
+}
+
+/* 🧭 Small screen fix (for iPhones and small Androids) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+  }
+}
