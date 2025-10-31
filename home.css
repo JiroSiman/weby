@@ -601,17 +601,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* allow wrapping if space is tight */
+  flex-wrap: nowrap; /* stay in one line */
   padding: 10px 20px;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: auto; /* allow horizontal scroll if too tight */
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-links {
   display: flex;
-  flex-wrap: wrap; /* prevent items from going off-screen */
-  gap: 12px;
+  flex-wrap: nowrap; /* don't wrap links */
+  gap: 15px; /* spacing between links */
   justify-content: center;
+  align-items: center;
 }
 
 .nav-links a {
@@ -619,29 +622,28 @@ body {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: clamp(14px, 2vw, 16px); /* responsive font size */
+  font-size: clamp(13px, 2vw, 16px); /* auto adjust font size */
+  white-space: nowrap; /* prevent text from breaking */
 }
 
 .nav-links a:hover {
   color: var(--primary-red);
 }
 
-/* 🧭 Small screen fix (for iPhones and small Androids) */
+/* 🧭 Small screen tweak (keep inline layout) */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    justify-content: center;
+    padding: 8px 10px;
   }
 
   .nav-links {
-    flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .nav-links a {
-    display: block;
-    text-align: center;
-    padding: 5px 0;
+    font-size: 14px;
+    padding: 4px;
   }
 }
+
