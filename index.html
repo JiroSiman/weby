@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOAHWERS - Login</title>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+* { 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box; 
+    font-family:"Inter", "Poppins", sans-serif; 
+}
+
+:root {
+    --primary-white: #ffffff;
+    --primary-red: #ff4d4d;
+    --light-red: #ff6b6b;
+    --dark-gray: #2d3748;
+    --medium-gray: #4a5568;
+    --light-gray: #e2e8f0;
+    --bg-gray: #f7fafc;
+    --glass-white: rgba(255, 255, 255, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+body { 
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gray); 
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Video */
+#bg-video{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0.9;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: -1;
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.float-element {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary-red);
+    opacity: 0.1;
+    animation: float 8s ease-in-out infinite;
+}
+
+.float-1 {
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.float-2 {
+    width: 60px;
+    height: 60px;
+    top: 65%;
+    right: 12%;
+    animation-delay: 2s;
+}
+
+.float-3 {
+    width: 40px;
+    height: 40px;
+    bottom: 25%;
+    left: 15%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px); 
+    }
+    50% { 
+        transform: translateY(-15px) translateX(8px); 
+    }
+}
+
+/* Main Container - Smaller Size */
+.container {
+    width: 380px; /* Reduced from 420px */
+    padding: 40px 35px; /* Reduced padding */
+    border-radius: 25px; /* Slightly smaller radius */
+    background: var(--glass-white);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-8px) scale(1.005); }
+}
+
+.container:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 30px 50px rgba(255, 77, 77, 0.12),
+        0 0 30px rgba(255, 77, 77, 0.08);
+}
+
+.wrapper {
+    position: relative;
+    border-radius: 20px; /* Smaller radius */
+    padding: 35px 30px; /* Reduced padding */
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    border: 1px solid rgba(255,255,255,0.4);
+    color: var(--dark-gray);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 8px 25px rgba(255, 77, 77, 0.08);
+    text-align: center;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 77, 77, 0.04), transparent);
+    transition: left 0.6s ease;
+}
+
+.wrapper:hover::before {
+    left: 100%;
+}
+
+.wrapper:hover {
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 12px 35px rgba(255, 77, 77, 0.15);
+}
+
+/* Header - Compact */
+.header {
+    margin-bottom: 30px; /* Reduced margin */
+    position: relative;
+}
+
+.logo {
+    font-size: 1.6rem; /* Slightly smaller */
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-bottom: 8px; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.logo-dot {
+    width: 6px; /* Smaller dot */
+    height: 6px;
+    background: var(--primary-red);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+    50% { 
+        transform: scale(1.2); 
+        opacity: 0.7; 
+    }
+}
+
+h2 {
+    font-size: 1.8rem; /* Smaller heading */
+    margin-bottom: 8px; /* Reduced margin */
+    color: var(--dark-gray);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: var(--medium-gray);
+    font-size: 0.9rem; /* Smaller subtitle */
+    margin-bottom: 25px; /* Reduced margin */
+}
+
+/* Form Elements - Compact */
+.form-group {
+    margin-bottom: 20px; /* Reduced margin */
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 14px 18px; /* Slightly smaller padding */
+    margin: 6px 0; /* Reduced margin */
+    border: 2px solid var(--light-gray);
+    border-radius: 12px; /* Smaller radius */
+    background: var(--primary-white);
+    color: var(--dark-gray);
+    font-size: 0.95rem; /* Slightly smaller font */
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+input::placeholder { 
+    color: var(--medium-gray); 
+    font-weight: 400;
+}
+
+input:focus {
+    background: var(--primary-white);
+    border-color: var(--primary-red);
+    box-shadow: 0 4px 15px rgba(255, 77, 77, 0.15);
+    transform: translateY(-1px);
+}
+
+.input-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-gray);
+    transition: color 0.3s ease;
+    font-size: 0.9rem; /* Smaller icon */
+}
+
+input:focus + .input-icon {
+    color: var(--primary-red);
+}
+
+/* Buttons - Compact */
+button {
+    width: 100%;
+    padding: 14px; /* Smaller padding */
+    margin-top: 8px; /* Reduced margin */
+    border: none;
+    border-radius: 12px; /* Smaller radius */
+    font-size: 0.95rem; /* Slightly smaller font */
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+    color: white;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover { 
+    transform: translateY(-2px); 
+    background: linear-gradient(135deg, var(--light-red), var(--primary-red)); 
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.35);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+/* Footer Links - Compact */
+.footer {
+    margin-top: 25px; /* Reduced margin */
+    font-size: 0.85rem; /* Smaller font */
+    color: var(--medium-gray);
+}
+
+a { 
+    color: var(--primary-red); 
+    text-decoration: none; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px; /* Thinner underline */
+    background: var(--primary-red);
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+a:hover { 
+    color: var(--light-red); 
+}
+
+/* Messages - Compact */
+#message { 
+    margin-top: 15px; /* Reduced margin */
+    font-weight: 600; 
+    font-size: 0.85rem; /* Smaller font */
+    padding: 10px 16px; /* Smaller padding */
+    border-radius: 8px; /* Smaller radius */
+    transition: all 0.3s ease;
+}
+
+.success {
+    color: #059669;
+    background: rgba(5, 150, 105, 0.1);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    animation: slideIn 0.5s ease;
+}
+
+.error {
+    color: var(--primary-red);
+    background: rgba(255, 77, 77, 0.1);
+    border: 1px solid rgba(255, 77, 77, 0.2);
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading Animation - Smaller */
+.loading {
+    display: inline-block;
+    width: 16px; /* Smaller loading */
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        max-width: 340px;
+        padding: 30px 25px;
+        margin: 15px;
+    }
+    
+    .wrapper {
+        padding: 30px 25px;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    input {
+        padding: 12px 16px;
+    }
+    
+    .logo {
+        font-size: 1.4rem;
+    }
+}
+
+/* Particle Effect on Success */
+.particle {
+    position: absolute;
+    width: 4px; /* Smaller particles */
+    height: 4px;
+    background: var(--primary-red);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+</style>
+</head>
+<body>
+
+<video autoplay muted loop id="bg-video">
+    <source src="bsu.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="video-overlay"></div>
+<div class="floating-elements">
+    <div class="float-element float-1"></div>
+    <div class="float-element float-2"></div>
+    <div class="float-element float-3"></div>
+</div>
+
+<div class="container" data-aos="zoom-in" data-aos-duration="800">
+    <div class="wrapper" id="formWrapper">
+        <div class="header">
+            <div class="logo">
+                WOAHWERS
+                <div class="logo-dot"></div>
+            </div>
+            <h2 id="formTitle">Register</h2>
+            <p class="subtitle" id="formSubtitle">Join our creative community</p>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Enter your username">
+            <span class="input-icon">👤</span>
+        </div>
+        
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Create a password">
+            <span class="input-icon">🔒</span>
+        </div>
+        
+        <button type="button" id="submitBtn">
+            <span id="btnText">Register</span>
+        </button>
+        
+        <div class="footer">
+            <p id="toggleText">Already have an account? <a id="toggleLink">Login</a></p>
+        </div>
+        
+        <div id="message"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// Initialize AOS
+AOS.init({
+    duration: 800,
+    once: true
+});
+
+let isRegister = true;
+let storedUsername = "";
+let storedPassword = "";
+
+const formTitle = document.getElementById("formTitle");
+const formSubtitle = document.getElementById("formSubtitle");
+const toggleLink = document.getElementById("toggleLink");
+const submitBtn = document.getElementById("submitBtn");
+const btnText = document.getElementById("btnText");
+const message = document.getElementById("message");
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+
+// Toggle between Register/Login
+toggleLink.addEventListener("click", () => {
+    isRegister = !isRegister;
+    
+    if(isRegister){
+        formTitle.textContent = "Register";
+        btnText.textContent = "Register";
+        formSubtitle.textContent = "Join our creative community";
+        toggleLink.textContent = "Login";
+        toggleLink.parentElement.firstChild.textContent = "Already have an account? ";
+    } else {
+        formTitle.textContent = "Login";
+        btnText.textContent = "Login";
+        formSubtitle.textContent = "Welcome back to WOAHWERS";
+        toggleLink.textContent = "Register";
+        toggleLink.parentElement.firstChild.textContent = "Don't have an account? ";
+    }
+    
+    message.textContent = "";
+    message.className = "";
+    
+    // Add transition effect
+    document.querySelector('.header').style.opacity = '0';
+    setTimeout(() => {
+        document.querySelector('.header').style.opacity = '1';
+    }, 300);
+});
+
+// Handle form submission
+function handleLoginOrRegister() {
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+    
+    if(username === "" || password === ""){
+        showMessage("Please fill in all fields!", "error");
+        return;
+    }
+
+    // Add loading state
+    const originalText = btnText.textContent;
+    btnText.innerHTML = '<div class="loading"></div> Processing...';
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+        if(isRegister){
+            storedUsername = username;
+            storedPassword = password;
+            showMessage("Registration successful! You can now login.", "success");
+            usernameInput.value = "";
+            passwordInput.value = "";
+
+            // Auto-switch to login
+            setTimeout(() => {
+                isRegister = false;
+                formTitle.textContent = "Login";
+                btnText.textContent = "Login";
+                formSubtitle.textContent = "Welcome back to WOAHWERS";
+                toggleLink.textContent = "Register";
+                toggleLink.parentElement.firstChild.textContent = "Don't have an account? ";
+                showMessage("Please login with your new credentials", "success");
+            }, 1500);
+            
+        } else {
+            if(username === storedUsername && password === storedPassword){
+                showMessage("Login successful! Redirecting...", "success");
+                // Simulate redirect
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 2000);
+            } else {
+                showMessage("Incorrect username or password!", "error");
+            }
+        }
+        
+        // Reset button
+        btnText.textContent = originalText;
+        submitBtn.disabled = false;
+    }, 1500);
+}
+
+// Show message with animation
+function showMessage(text, type) {
+    message.textContent = text;
+    message.className = type;
+    
+    // Add particle effect for success
+    if(type === "success") {
+        createParticles();
+    }
+}
+
+// Create celebration particles
+function createParticles() {
+    for(let i = 0; i < 12; i++) {
+        createParticle();
+    }
+}
+
+function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    document.body.appendChild(particle);
+    
+    const size = Math.random() * 4 + 2;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    const containerRect = document.querySelector('.container').getBoundingClientRect();
+    const startX = containerRect.left + containerRect.width / 2;
+    const startY = containerRect.top + containerRect.height / 2;
+    
+    particle.style.left = `${startX}px`;
+    particle.style.top = `${startY}px`;
+    
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = 1.5 + Math.random() * 1.5;
+    const vx = Math.cos(angle) * velocity;
+    const vy = Math.sin(angle) * velocity;
+    
+    let opacity = 1;
+    let progress = 0;
+    
+    function animate() {
+        progress += 0.02;
+        opacity = 1 - progress;
+        
+        particle.style.opacity = opacity;
+        particle.style.transform = `translate(${vx * progress * 80}px, ${vy * progress * 80}px)`;
+        
+        if(progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            particle.remove();
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
+// Event listeners
+submitBtn.addEventListener("click", handleLoginOrRegister);
+
+usernameInput.addEventListener("keydown", function(e) {
+    if(e.key === "Enter") {
+        e.preventDefault();
+        passwordInput.focus();
+    }
+});
+
+passwordInput.addEventListener("keydown", function(e) {
+    if(e.key === "Enter") {
+        e.preventDefault();
+        handleLoginOrRegister();
+    }
+});
+
+// Add focus animation to inputs
+const inputs = document.querySelectorAll('input');
+inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.02)';
+    });
+    
+    input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+    });
+});
+</script>
+
+</body>
+</html>
