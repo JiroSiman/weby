@@ -435,6 +435,64 @@ a:hover {
     pointer-events: none;
     opacity: 0;
 }
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  .container {
+    width: 95%;
+    max-width: 350px;
+    padding: 25px 20px;
+    margin: 0 auto;
+  }
+
+  .wrapper {
+    padding: 25px 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    margin-top: 15px;
+  }
+
+  /* Para di mag-overlap background video */
+  #bg-video {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Hide or rearrange “About Us” kung di kasya */
+  .about-section {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+    
 </style>
 </head>
 <body>
